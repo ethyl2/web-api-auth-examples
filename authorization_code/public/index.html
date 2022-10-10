@@ -35,10 +35,14 @@
     </div>
 
     <script id="user-profile-template" type="text/x-handlebars-template">
-      <h1>Logged in as {{display_name}}</h1>
-      <div class="media">
+      <h1 style="color: white;">Logged in as {{display_name}}</h1>
+      <div class="media" style="color: white;">
         <div class="pull-left">
-          <img class="media-object" width="150" src="{{images.0.url}}" />
+          <img 
+            class="media-object" 
+            width="150" src="{{images.0.url}}" 
+            style="border-radius: 5%;"
+          />
         </div>
         <div class="media-body">
           <dl class="dl-horizontal">
@@ -49,14 +53,16 @@
             <dt>Link</dt><dd><a href="{{href}}">{{href}}</a></dd>
             <dt>Profile Image</dt><dd class="clearfix"><a href="{{images.0.url}}">{{images.0.url}}</a></dd>
             <dt>Country</dt><dd>{{country}}</dd>
+            <dt>Followers</dt><dd>{{ followers.total }}</dd>
+            <dt>Product</dt><dd>{{ product }}</dd>
           </dl>
         </div>
       </div>
     </script>
 
     <script id="oauth-template" type="text/x-handlebars-template">
-      <h2>oAuth info</h2>
-      <dl class="dl-horizontal">
+      <h2 style="color: white;">oAuth info</h2>
+      <dl class="dl-horizontal" style="color: white;">
         <dt>Access token</dt><dd class="text-overflow">{{access_token}}</dd>
         <dt>Refresh token</dt><dd class="text-overflow">{{refresh_token}}</dd>
       </dl>
@@ -112,7 +118,7 @@
                 },
                 success: function(response) {
                   userProfilePlaceholder.innerHTML = userProfileTemplate(response);
-
+                  console.log(response)
                   $('#login').hide();
                   $('#loggedin').show();
                 }
