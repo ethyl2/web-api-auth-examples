@@ -143,5 +143,20 @@ app.get('/refresh_token', function(req, res) {
   });
 });
 
+app.get('/playlists', function(req, res) {
+  var options = {
+    url: 'https://api.spotify.com/v1/users/f60stkcitblui1n2qik0xr8no/playlists',
+    json: true
+  };
+  // use the access token to access the Spotify Web API
+  req.get(options, function(error, response) {
+    console.log(response.data);
+  });
+})
+
+app.get('/test', function(req, res) {
+  res.send('test')
+})
+
 console.log('Listening on 8888');
 app.listen(8888);
