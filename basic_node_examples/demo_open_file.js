@@ -5,6 +5,16 @@
 var http = require('http')
 var fs = require('fs')
 http.createServer(function (req, res) {
+
+    // The readStream object fires events when opening and closing a file.
+    const rs = fs.createReadStream('mynewfile2.txt')
+    rs.on('open', function() {
+      console.log('readStream object says the file is open!')
+    })
+    rs.on('close', function() {
+      console.log('readStream object says the file is closed!')
+    })
+
     fs.open('mynewfile2.txt', 'w', function (err, file) {
         if (err) throw err;
         console.log('Opened or created file!');
@@ -23,6 +33,7 @@ http.createServer(function (req, res) {
     fs.readFile('mynewfile2.txt', function(err, data) {
     res.writeHead(200, {'Content-Type': 'text/html'})
     res.write(data)
+
     return res.end()
   })
 }).listen(8080)
